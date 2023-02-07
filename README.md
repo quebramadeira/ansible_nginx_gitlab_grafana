@@ -1,1 +1,1 @@
-# ansible_nginx_gitlab_grafana
+# ansible playbook to get nginx_gitlab_grafana on CentOS server
