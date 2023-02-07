@@ -4,15 +4,20 @@
   become: yes
 
   tasks:
-    - name: Install Nginx
+    - name: Dnf install 
       yum:
+        name:
+        - dnf
+        state: present
+    - name: Install Nginx
+      dnf:
         name: nginx
         state: latest
 
     - name: Install certbot
-      yum:
+      dnf:
         name: certbot
-        state: latest
+        state: latest              
 
     - name: Copy Nginx server block template for Gitlab
       template:
