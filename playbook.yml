@@ -1,0 +1,54 @@
+---
+- name: Set up Nginx, Gitlab, Grafana, and SSL certificates
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: Install Nginx
+      yum:
+        name: nginx
+        state: latest
+
+    - name: Install certbot
+      yum:
+        name: certbot
+        state: latest
+
+    - name: Copy Nginx server block template for Gitlab
+      template:
+        src: templates/gitlab_nginx.conf.j2
+        dest: /etc/nginx/conf.d/gitlab.conf
+        mode: 0644
+
+    - name: Copy Nginx server block template for Grafana
+      template:
+        src: templates/grafana_nginx.conf.j2
+        dest: /etc/nginx/conf.d/grafana.conf
+        mode: 0644
+
+    - name: Request SSL certificate for Gitlab
+      letsencrypt:
+        domains: gitlab.example.com
+        cert_path: /etc/letsencrypt/live/gitlab.example.com
+
+    - name: Request SSL certificate for Grafana
+      letsencrypt:
+        domains: grafana.example.com
+        cert_path: /etc/letsencrypt/live/grafana.example.com
+
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted
+
+    - name: Wait for Gitlab
+      wait_for:
+        host: gitlab.example.com
+        port: 443
+        timeout: 10
+
+    - name: Wait for Grafana
+      wait_for:
+        host: grafana.example.com
+        port: 443
+        timeout: 10
