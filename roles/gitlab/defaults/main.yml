@@ -1,0 +1,5 @@
+gitlab_dependencies:        
+  - curl
+  - policycoreutils-python-utils
+  - openssh-server
+  - postfix
