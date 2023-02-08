@@ -26,9 +26,9 @@
      
   - set_fact: grafana_release='grafana={{grafana_version}}'   
 
-  - name: Install Grafana
+  - name: "Install Grafana {{grafana_version}}"
     yum: name="{{grafana_release}}"
-    state: present
+      state: present
     when: grafana_version != "latest"
       
     #shell: yum install grafana-{{ grafana_version }} -y
