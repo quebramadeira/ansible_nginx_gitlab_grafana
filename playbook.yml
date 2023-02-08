@@ -1,5 +1,9 @@
 - hosts: localhost
   become: yes
   gather_facts: false
-  roles:
-   - grafana
+  vars:
+    gitlab_url: gitlab.example.com
+  roles: 
+   - gitlab
+#   - grafana
+   - nginx
