@@ -3,6 +3,14 @@
       name: "{{ gitlab_dependencies }}"
       state: present
       
+  - name: Enable Postfix service
+    become: yes
+    service:
+      name: postfix 
+      enabled: yes
+      state: started
+    notify: restart_postfix 
+      
   - name: Add GitLab Repository
     shell: curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bash
     become: yes
@@ -13,13 +21,19 @@
     yum:
       name: "{{gitlab_release}}"
       state: present
-      
-  - name: Start GitLab Service
-    service:
-      name: gitlab-runsvdir
-      state: started
-      enabled: yes
-
+   # notify:  
+   #   - restart gitlab
+ 
+  - name: Open Firewall Ports 
+    become: yes
+    firewalld: 
+      permanent: true
+      service: "{{ item }}"
+      state: enabled
+      immediate: yes
+    with_items:
+      - http
+      - https
   - name: Configure GitLab URL
     lineinfile:
       path: /etc/gitlab/gitlab.rb
