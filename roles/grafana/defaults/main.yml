@@ -1,0 +1,35 @@
+---
+grafana_user: grafana
+grafana_group: grafana
+
+install_type: rpm
+
+gpgkey: https://rpm.grafana.com/gpg.key
+
+baseurl: https://rpm.grafana.com
+
+
+install_dir: /opt/grafana
+config_dir: /etc/grafana
+data_dir: "{{ install_dir }}/data"
+logs_dir: "{{ _data_dir }}/log"
+provisioning_dir: "{{ install_dir }}/conf/provisioning"
+plugins_dir: "{{ _data_dir }}/plugins"
+
+provision_configs: []
+
+grafana_config_file: grafana.ini
+grafana_config: {}
+
+grafana_datasources: []
+datasources_directory: "{{ install_dir }}/provisioning/datasources"
+
+grafana_dashboards: []
+dashboards_directory: "{{ install_dir }}/provisioning/dashboards"
+dashboard_base_url: https://grafana.com/api/dashboards
+
+grafana_notifiers: []
+notifiers_directory: "{{ install_dir }}/provisioning/notifiers"
+
+grafana_plugins: []
+
