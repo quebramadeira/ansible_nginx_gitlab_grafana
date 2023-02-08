@@ -11,6 +11,8 @@ gpgkey: https://rpm.grafana.com/gpg.key
 
 baseurl: https://rpm.grafana.com
 
+service_name: grafana-server
+
 install_dir: /opt/grafana
 config_dir: /etc/grafana
 data_dir: "{{ install_dir }}/data"
