@@ -2,3 +2,15 @@
     yum:
       name: "{{ gitlab_dependencies }}"
       state: present
+      
+  - name: Add GitLab Repository
+    shell: curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bash
+    become: yes
+    
+  - set_fact: gitlab_release='gitlab-ce-{{gitlab_version}}'     
+    
+  - name: Install GitLab
+    yum:
+      name: "{{gitlab_release}}"
+      state: present
+      
