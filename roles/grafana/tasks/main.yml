@@ -1,10 +1,7 @@
 ---
   - name: Install required packages
     yum:
-      name:
-        - wget
-        - curl
-        - initscripts
+      name: "{{ grafana_dependencies }}"
       state: present
       
   - name: Add Grafana Repository
