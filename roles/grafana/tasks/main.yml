@@ -36,8 +36,9 @@
       
   - name: Install Grafana Latest
     yum: name= grafana
+      state: present
     when: grafana_version == "latest"
-    state: present
+    
 
   - name: Start Grafana Service
     service:
