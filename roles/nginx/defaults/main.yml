@@ -1,0 +1,38 @@
+---
+nginx_conf_template: "nginx.conf.j2"
+nginx_extra_conf_options: ""
+nginx_service_state: started
+nginx_service_enabled: true
+nginx_worker_processes: "4"
+nginx_multi_accept: "off"
+nginx_worker_connections: "1024"
+nginx_sendfile: "on"
+nginx_tcp_nopush: "on"
+nginx_tcp_nodelay: "on"
+
+nginx_keepalive_timeout: "65"
+nginx_keepalive_requests: "100"
+
+nginx_server_tokens: "on"
+
+nginx_proxy_cache_path: ""
+nginx_extra_http_options: ""
+
+nginx_client_max_body_size: "64m"
+
+nginx_server_names_hash_bucket_size: "64"
+
+nginx_error_log: "/var/log/nginx/error.log warn"
+nginx_access_log: "/var/log/nginx/access.log main buffer=16k flush=2m"
+nginx_log_format: |-
+  '$remote_addr - $remote_user [$time_local] "$request" '
+  '$status $body_bytes_sent "$http_referer" '
+  '"$http_user_agent" "$http_x_forwarded_for"'
+nginx_upstreams:
+  - name: myapp
+#   strategy: "ip_hash" # "least_conn", etc.
+#   keepalive: 16 # optional
+    servers:
+      - "webapp_1:5000 weight=3"
+      - "webapp_2:5000"
+      - "webapp_3:5000 backup"
