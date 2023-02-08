@@ -4,6 +4,6 @@ gitlab_dependencies:
   - openssh-server
   - postfix
  
-gitlab-version: 15.8.0-ce.0
-gitlab-url: gitlab.example.com
+gitlab_version: 15.8.0-ce.0
+gitlab_url: gitlab.example.com
  
