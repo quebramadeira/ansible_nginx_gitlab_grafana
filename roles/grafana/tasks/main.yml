@@ -28,14 +28,16 @@
 
   - name: Install Grafana {{grafana_version}}
     yum: name="{{grafana_release}}"
+    state: present
     when: grafana_version != "latest"
-      state: present
+      
     #shell: yum install grafana-{{ grafana_version }} -y
     #become: yes   
       
   - name: Install Grafana Latest
     yum: name= grafana
     when: grafana_version == "latest"
+    state: present
 
   - name: Start Grafana Service
     service:
