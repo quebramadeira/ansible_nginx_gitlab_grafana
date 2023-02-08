@@ -24,7 +24,7 @@
       create: yes
       state: present
      
-  - set_fact: grafana_release='grafana={{grafana_version}}'   
+  - set_fact: grafana_release='grafana-{{grafana_version}}'   
 
   - name: "Install Grafana {{grafana_version}}"
     yum: 
