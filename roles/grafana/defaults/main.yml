@@ -1,13 +1,9 @@
 ---
-grafana_user: grafana
-grafana_group: grafana
-
-install_type: rpm
+grafana_version: 9.3.0
 
 gpgkey: https://rpm.grafana.com/gpg.key
 
 baseurl: https://rpm.grafana.com
-
 
 install_dir: /opt/grafana
 config_dir: /etc/grafana
