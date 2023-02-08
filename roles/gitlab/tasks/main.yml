@@ -14,3 +14,18 @@
       name: "{{gitlab_release}}"
       state: present
       
+  - name: Start GitLab Service
+    service:
+      name: gitlab-runsvdir
+      state: started
+      enabled: yes
+
+  - name: Configure GitLab URL
+    lineinfile:
+      path: /etc/gitlab/gitlab.rb
+      line: |
+        external_url "https://{{ gitlab_url }}"
+      state: present
+    notify: 
+    - restart gitlab 
+      
