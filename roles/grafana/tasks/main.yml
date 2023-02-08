@@ -25,10 +25,12 @@
       state: present
 
   - name: Install Grafana
-    yum:
-      name: grafana
-      state: present
-      version: "{{ grafana_version }}"
+    shell: yum install grafana-{{ grafana_version }}
+    become: yes
+    #yum:
+      #name: grafana
+      #state: present
+      #version: "{{ grafana_version }}"
 
   - name: Start Grafana Service
     service:
