@@ -1,7 +1,8 @@
 gitlab_dependencies:        
   - curl
-  - policycoreutils-python-utils
+  - policycoreutils-python
   - openssh-server
+  - perl
   - postfix
  
 gitlab_version: 15.8.0-ce.0
