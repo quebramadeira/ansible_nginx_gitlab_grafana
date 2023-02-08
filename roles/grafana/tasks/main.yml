@@ -28,7 +28,7 @@
 
   - name: "Install Grafana {{grafana_version}}"
     yum: 
-      name="{{grafana_release}}"
+      name: "{{grafana_release}}"
       state: present
     when: grafana_version != "latest"
       
@@ -37,7 +37,7 @@
       
   - name: Install Grafana Latest
     yum: 
-      name= grafana
+      name: grafana
       state: present
     when: grafana_version == "latest"
     
