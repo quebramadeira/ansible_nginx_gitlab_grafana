@@ -1,4 +1,10 @@
 ---
+root_group: root
+nginx_conf_path: /etc/nginx/conf.d
+nginx_conf_file_path: /home/jenkins/nginx/nginx.conf
+nginx_pidfile: /var/run/nginx.pid
+nginx_user: "nginx"
+
 nginx_conf_template: "nginx.conf.j2"
 nginx_extra_conf_options: ""
 nginx_service_state: started
