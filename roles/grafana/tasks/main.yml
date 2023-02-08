@@ -6,6 +6,11 @@
         - curl
         - initscripts
       state: present
+      
+  - name: Create yum repos directory
+    file:
+      path: /etc/yum.repos.d
+      state: directory
 
   - name: Add Grafana Repository
     lineinfile:
