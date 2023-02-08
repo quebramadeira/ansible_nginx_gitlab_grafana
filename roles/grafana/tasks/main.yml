@@ -23,14 +23,19 @@
         exclude=*beta*
       create: yes
       state: present
+     
+  - set_fact: grafana_release='grafana={{grafana_version}}'   
 
-  - name: Install Grafana
-    shell: yum install grafana-{{ grafana_version }} -y
-    become: yes
-    #yum:
-      #name: grafana
-      #state: present
-      #version: "{{ grafana_version }}"
+  - name: Install Grafana {{grafana_version}}
+    yum: name="{{grafana_release}}"
+    when: grafana_version != "latest"
+      state: present
+    #shell: yum install grafana-{{ grafana_version }} -y
+    #become: yes   
+      
+  - name: Install Grafana Latest
+    yum: name= grafana
+    when: grafana_version == "latest"
 
   - name: Start Grafana Service
     service:
