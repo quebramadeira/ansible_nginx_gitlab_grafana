@@ -1,4 +1,10 @@
 ---
+
+grafana_dependencies:
+  - wget
+  - curl
+  - initscripts
+
 grafana_version: 9.3.6
 
 gpgkey: https://rpm.grafana.com/gpg.key
