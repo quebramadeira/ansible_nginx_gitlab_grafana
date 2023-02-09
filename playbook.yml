@@ -4,6 +4,6 @@
   vars:
     gitlab_url: gitlab.example.com
   roles: 
-   - gitlab
-#   - grafana
-   - nginx
+#   - gitlab
+   - grafana
+#   - nginx
