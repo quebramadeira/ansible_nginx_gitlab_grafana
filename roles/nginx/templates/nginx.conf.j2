@@ -79,8 +79,8 @@ server {
     listen 80;
     listen    [::]:80;
     return 404;
-    nginx_access_log: "/var/log/nginx/{{ upstream.name }}_access.log main buffer=16k flush=2m";
-    nginx_error_log: "/var/log/nginx/{{ upstream.name }}_error.log warn";
+    access_log /var/log/nginx/{{ upstream.name }}_access.log main buffer=16k flush=2m;
+    error_log /var/log/nginx/{{ upstream.name }}_error.log warn;
     }
 server {   
     server_name {{ host_domain }};
@@ -92,8 +92,8 @@ server {
     listen   [::]:443 ssl;
     ssl_certificate /etc/letsencrypt/live/{{ host_domain }}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/{{ host_domain }}/privkey.pem;
-    nginx_access_log: "/var/log/nginx/{{ upstream.name }}_access.log main buffer=16k flush=2m";
-    nginx_error_log: "/var/log/nginx/{{ upstream.name }}_error.log warn";
+    access_log /var/log/nginx/{{ upstream.name }}_access.log main buffer=16k flush=2m;
+    error_log /var/log/nginx/{{ upstream.name }}_error.log warn;
     }
   {% endfor %}    
   {% endblock %}   
