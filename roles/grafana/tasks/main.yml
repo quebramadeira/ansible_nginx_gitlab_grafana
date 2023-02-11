@@ -38,7 +38,20 @@
       state: present
     when: grafana_version == "latest"
     
-
+  - name: change serve_from_sub_path setting
+  lineinfile:
+    dest: {{ path_to_grafana.ini }}
+    regexp: '^;serve_from_sub_path = false'
+    line: 'serve_from_sub_path = true'
+    state: present
+    
+  - name: change root_url setting
+  lineinfile:
+    dest: {{ path_to_grafana.ini }}
+    regexp: '^;root_url = %(protocol)s://%(domain)s:%(http_port)s/'
+    line: 'root_url = %(protocol)s://%(domain)s:%(http_port)s/grafana/'
+    state: present
+    
   - name: Start Grafana Service
     service:
       name: grafana-server
