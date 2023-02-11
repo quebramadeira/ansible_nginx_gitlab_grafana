@@ -3,14 +3,8 @@
       name:
         - nginx
         - certbot
-      state: present
-      
-  - name: Ensure nginx service is running as configured.
-    service:
-      name: nginx
-      state: "{{ nginx_service_state }}"
-      enabled: "{{ nginx_service_enabled }}"   
-      
+      state: present  
+    
   - name: Obtain Let's Encrypt Certificate
     shell: certbot certonly --standalone -d {{ host_domain }} --email {{ letsencrypt_email }} --non-interactive --agree-tos
     become: yes
@@ -33,7 +27,11 @@
       weekday: 1
       job: 'certbot renew --post-hook "systemctl reload nginx" >> /var/log/letsencrypt/letsencrypt-update.log 2>&1'
  
- 
+   - name: Ensure nginx service is running as configured.
+    service:
+      name: nginx
+      state: "{{ nginx_service_state }}"
+      enabled: "{{ nginx_service_enabled }}"   
 
 
 
