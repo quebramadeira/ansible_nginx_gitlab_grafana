@@ -6,6 +6,7 @@
         - libselinux-utils
         - policycoreutils
         - selinux-policy-targeted
+        - libselinux-python3
       state: present  
       
   - name: Add SELinux port mapping for Grafana TCP 3000
