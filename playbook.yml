@@ -2,8 +2,10 @@
   become: yes
   gather_facts: false
   vars:
-    gitlab_url: gitlab.example.com
-  roles: 
+    host_domain: quebramadeira.ddns.net
+  roles:
+   - nginx
+   - grafana   
 #   - gitlab
-   - grafana
-#   - nginx
+
+
