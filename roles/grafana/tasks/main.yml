@@ -40,14 +40,14 @@
     
   - name: change serve_from_sub_path setting
     lineinfile:
-      dest: "{{ cogfig_dir }}/{{config_file }}"
+      dest: "{{ config_dir }}/{{config_file }}"
       regexp: '^;serve_from_sub_path = false'
       line: 'serve_from_sub_path = true'
       state: present
     
   - name: change root_url setting
     lineinfile:
-      dest: "{{ cogfig_dir }}/{{config_file }}"
+      dest: "{{ config_dir }}/{{config_file }}"
       regexp: '^;root_url = %(protocol)s://%(domain)s:%(http_port)s/'
       line: 'root_url = %(protocol)s://%(domain)s:%(http_port)s/grafana/'
       state: present
