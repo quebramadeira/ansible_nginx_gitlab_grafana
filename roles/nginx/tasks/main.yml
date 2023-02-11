@@ -4,6 +4,12 @@
         - nginx
         - certbot
       state: present  
+      
+  - name: Add SELinux port mapping for Grafana TCP 3000
+    lineinfile:
+      dest: /etc/selinux/targeted/src/policy/domains/program/tcp.te
+      line: "allow http_port_t tcp_port_t:tcp_socket name_bind; # added for tcp 3000"
+      insertafter: "# allow http_port_t to bind to any tcp port"
     
   - name: Obtain Let's Encrypt Certificate
     shell: certbot certonly --standalone -d {{ host_domain }} --email {{ letsencrypt_email }} --non-interactive --agree-tos
