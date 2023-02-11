@@ -3,7 +3,6 @@
 user  {{ nginx_user }};
 {% endblock %}
 
-error_log  {{ nginx_error_log }};
 pid        {{ nginx_pidfile }};
 
 {% block worker %}
@@ -30,8 +29,6 @@ http {
     client_max_body_size {{ nginx_client_max_body_size }};
 
     log_format  main  {{ nginx_log_format|indent(23) }};
-
-    access_log  {{ nginx_access_log }};
 
     sendfile        {{ nginx_sendfile }};
     tcp_nopush      {{ nginx_tcp_nopush }};
@@ -80,7 +77,10 @@ server {
     }
     server_name {{ host_domain }};
     listen 80;
+    listen    [::]:80;
     return 404;
+    access_log  {{ nginx_access_log }};
+    error_log  {{ nginx_error_log }};
     }
 server {   
     server_name {{ host_domain }};
@@ -89,8 +89,11 @@ server {
       proxy_pass http://{{ upstream.name }};
       }
     listen 443 ssl;
+    listen   [::]:443 ssl;
     ssl_certificate /etc/letsencrypt/live/{{ host_domain }}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/{{ host_domain }}/privkey.pem;
+    access_log  {{ nginx_access_log }};
+    error_log  {{ nginx_error_log }};
     }
   {% endfor %}    
   {% endblock %}   
