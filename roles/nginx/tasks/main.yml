@@ -4,6 +4,8 @@
         - nginx
         - certbot
         - libselinux-utils
+        - policycoreutils
+        - selinux-policy-targeted
       state: present  
       
   - name: Add SELinux port mapping for Grafana TCP 3000
