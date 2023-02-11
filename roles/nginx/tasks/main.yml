@@ -12,7 +12,7 @@
       enabled: "{{ nginx_service_enabled }}"   
       
   - name: Obtain Let's Encrypt Certificate
-    shell: certbot certonly --standalone -d {{ host_domain }}
+    shell: certbot certonly --standalone -d {{ host_domain }} --email {{ letsencrypt_email }} --non-interactive --agree-tos
     become: yes
     
   - name: Copy nginx configuration in place.
@@ -23,7 +23,15 @@
       group: "{{ root_group }}"
       mode: 0644
     notify:
-      - reload nginx  
+      - Restart Nginx  
+      
+  - name: Insert cert-bot renew in crontab
+    cron:
+      name: "cert-bot renew"
+      minute: 30
+      hour: 1
+      weekday: 1
+      job: 'certbot renew --post-hook "systemctl reload nginx" >> /var/log/letsencrypt/letsencrypt-update.log 2>&1'
  
  
 
