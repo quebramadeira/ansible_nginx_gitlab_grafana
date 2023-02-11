@@ -3,12 +3,11 @@
       name:
         - nginx
         - certbot
-        - python3-policycoreutils
-        - python3-libselinux
+        - policycoreutils-python3
         #- libselinux-utils
         #- policycoreutils
         #- selinux-policy-targeted
-        #- libselinux-python3
+        - libselinux-python3
       state: present  
       
   - name: Add SELinux port mapping for Grafana TCP 3000
