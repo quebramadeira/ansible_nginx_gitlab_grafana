@@ -10,6 +10,7 @@
       dest: /etc/selinux/targeted/src/policy/domains/program/tcp.te
       line: "allow http_port_t tcp_port_t:tcp_socket name_bind; # added for tcp 3000"
       insertafter: "# allow http_port_t to bind to any tcp port"
+    become: yes
     
   - name: Obtain Let's Encrypt Certificate
     shell: certbot certonly --standalone -d {{ host_domain }} --email {{ letsencrypt_email }} --non-interactive --agree-tos
@@ -33,11 +34,11 @@
       weekday: 1
       job: 'certbot renew --post-hook "systemctl reload nginx" >> /var/log/letsencrypt/letsencrypt-update.log 2>&1'
  
-   - name: Ensure nginx service is running as configured.
-     service:
-       name: nginx
-       state: "{{ nginx_service_state }}"
-       enabled: "{{ nginx_service_enabled }}"   
+  - name: Ensure nginx service is running as configured.
+    service:
+      name: nginx
+      state: "{{ nginx_service_state }}"
+      enabled: "{{ nginx_service_enabled }}"   
 
 
 
