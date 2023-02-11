@@ -12,34 +12,20 @@
       enabled: "{{ nginx_service_enabled }}"   
       
   - name: Obtain Let's Encrypt Certificate
-    shell: certbot certonly --standalone -d {{ gitlab_url }}
+    shell: certbot certonly --standalone -d {{ host_domain }}
     become: yes
     
-  - name: Copy GitLab Nginx Configuration
-    shell: cp /etc/gitlab/gitlab-nginx.conf /etc/nginx/conf.d/gitlab.conf
-    become: yes  
-   
-  - name: Update Nginx Configuration
-    lineinfile:
-      path: /etc/nginx/conf.d/gitlab.conf
-      regexp: 'listen\s+80'
-      line: |
-        listen 443 ssl;
-        server_name {{ gitlab_url }};
-        ssl_certificate /etc/letsencrypt/live/{{ gitlab_url }}/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/{{ gitlab_url }}/privkey.pem;
-      state: present
+  - name: Copy nginx configuration in place.
+    template:
+      src: "{{ nginx_conf_template }}"
+      dest: "{{ nginx_conf_file_path }}"
+      owner: root
+      group: "{{ root_group }}"
+      mode: 0644
     notify:
-      - reload nginx
+      - reload nginx  
+ 
+ 
 
-#- name: Copy nginx configuration in place.
- #   template:
-  #    src: "{{ nginx_conf_template }}"
-   #   dest: "{{ nginx_conf_file_path }}"
-    #  owner: root
-     # group: "{{ root_group }}"
-      #mode: 0644
-    #notify:
-     # - reload nginx
 
 
