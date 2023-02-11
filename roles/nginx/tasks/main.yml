@@ -34,10 +34,10 @@
       job: 'certbot renew --post-hook "systemctl reload nginx" >> /var/log/letsencrypt/letsencrypt-update.log 2>&1'
  
    - name: Ensure nginx service is running as configured.
-    service:
-      name: nginx
-      state: "{{ nginx_service_state }}"
-      enabled: "{{ nginx_service_enabled }}"   
+     service:
+       name: nginx
+       state: "{{ nginx_service_state }}"
+       enabled: "{{ nginx_service_enabled }}"   
 
 
 
