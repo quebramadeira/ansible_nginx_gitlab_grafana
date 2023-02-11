@@ -3,6 +3,7 @@
       name:
         - nginx
         - certbot
+        - libselinux-utils
       state: present  
       
   - name: Add SELinux port mapping for Grafana TCP 3000
