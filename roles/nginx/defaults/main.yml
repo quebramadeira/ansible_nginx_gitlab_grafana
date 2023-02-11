@@ -6,8 +6,8 @@ nginx_conf_template: "nginx.conf.j2"
 
 nginx_user: "nginx"
 nginx_worker_processes: "auto"
-nginx_access_log: "/var/log/nginx/{{ upstream.name }}_access.log main buffer=16k flush=2m"
-nginx_error_log: "/var/log/nginx/{{ upstream.name }}_error.log warn"
+nginx_access_log: "/var/log/nginx/{{ nginx_upstreams.name }}_access.log main buffer=16k flush=2m"
+nginx_error_log: "/var/log/nginx/{{ nginx_upstreams.name }}_error.log warn"
 nginx_pidfile: /run/nginx.pid
 nginx_multi_accept: "off"
 
