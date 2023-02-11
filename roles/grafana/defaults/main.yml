@@ -15,14 +15,14 @@ service_name: grafana-server
 
 install_dir: /opt/grafana
 config_dir: /etc/grafana
+config_file: grafana.ini
+
 data_dir: "{{ install_dir }}/data"
 logs_dir: "{{ _data_dir }}/log"
 provisioning_dir: "{{ install_dir }}/conf/provisioning"
 plugins_dir: "{{ _data_dir }}/plugins"
 
 provision_configs: []
-
-grafana_config_file: grafana.ini
 grafana_config: {}
 
 grafana_datasources: []
