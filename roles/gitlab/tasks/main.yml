@@ -39,7 +39,7 @@
     lineinfile:
       path: /etc/gitlab/gitlab.rb
       line: |
-        external_url '{{ gitlab_url }}'
+        external_url "{{ gitlab_url }}"
         gitlab_rails['internal_api_url'] = '{{ gitlab_url }}'
         puma['enable'] = false
         nginx['enable'] = false
