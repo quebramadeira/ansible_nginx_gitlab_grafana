@@ -39,7 +39,12 @@
     lineinfile:
       path: /etc/gitlab/gitlab.rb
       line: |
-        external_url "https://{{ gitlab_url }}"
+        external_url '{{ gitlab_url }}'
+        gitlab_rails['internal_api_url'] = '{{ gitlab_url }}'
+        puma['enable'] = false
+        nginx['enable'] = false
+        web_server['external_users'] = ['{{ nginx_user }}']
+        nginx['listen_port'] = 4000
       state: present
     notify: 
     - restart gitlab 
