@@ -43,7 +43,7 @@
         gitlab_rails['internal_api_url'] = '{{ gitlab_url }}'
         puma['enable'] = false
         nginx['enable'] = false
-        web_server['external_users'] = ['{{ nginx_user }}']
+        web_server['external_users'] = ['{{ external_users }}']
         nginx['listen_port'] = 4000
       state: present
     notify: 
