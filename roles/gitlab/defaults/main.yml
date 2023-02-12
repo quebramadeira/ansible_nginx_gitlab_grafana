@@ -7,5 +7,5 @@ gitlab_dependencies:
  
 gitlab_version: 15.8.0
 gitlab_url: http://quebramadeira.ddns.net/gitlab/
-external_users: www-data
+nginx_user: "nginx"
  
