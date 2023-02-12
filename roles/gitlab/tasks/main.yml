@@ -48,6 +48,10 @@
         gitlab_workhorse['listen_network'] = "unix"
         gitlab_workhorse['listen_addr'] = "/var/opt/gitlab/gitlab-workhorse/sockets/socket"
         nginx['listen_port'] = 4000
+        nginx['proxy_set_headers'] = {
+        "X-Forwarded-Proto" => "http",
+        "CUSTOM_HEADER" => "VALUE"
+        }
       state: present
     notify: 
     - restart gitlab 
