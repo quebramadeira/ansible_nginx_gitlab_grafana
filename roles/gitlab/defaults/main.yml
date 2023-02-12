@@ -5,7 +5,7 @@ gitlab_dependencies:
   - perl
   - postfix
  
-gitlab_version: 15.8.0
+gitlab_version: 15.7.5
 gitlab_url: https://quebramadeira.ddns.net/gitlab/
 nginx_user: "nginx"
  
