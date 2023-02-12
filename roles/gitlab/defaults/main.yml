@@ -6,6 +6,6 @@ gitlab_dependencies:
   - postfix
  
 gitlab_version: 15.8.0
-gitlab_url: http://quebramadeira.ddns.net/gitlab/
+gitlab_url: https://quebramadeira.ddns.net/gitlab/
 nginx_user: "nginx"
  
