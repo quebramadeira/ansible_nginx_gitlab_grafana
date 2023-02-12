@@ -37,7 +37,13 @@
       name: grafana
       state: present
     when: grafana_version == "latest"
-    
+       
+  - name: Start Grafana Service
+    service:
+      name: grafana-server
+      state: started
+      enabled: yes
+      
   - name: change serve_from_sub_path setting
     lineinfile:
       dest: "{{ config_dir }}/{{config_file }}"
@@ -51,9 +57,4 @@
       regexp: '^;root_url = %(protocol)s://%(domain)s:%(http_port)s/'
       line: 'root_url = %(protocol)s://%(domain)s:%(http_port)s/grafana/'
       state: present
-    
-  - name: Start Grafana Service
-    service:
-      name: grafana-server
-      state: started
-      enabled: yes
+    notify: Restart Grafana service
