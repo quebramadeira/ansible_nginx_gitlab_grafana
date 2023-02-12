@@ -4,11 +4,6 @@
   vars:
     host_domain: quebramadeira.ddns.net
     letsencrypt_email: quebramadeira@gmail.com
-  tasks:
-  - name: Install community.general
-    pip:
-      name: community.General
-      state: present
   roles:
    - nginx
    - grafana   
