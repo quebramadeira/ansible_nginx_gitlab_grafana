@@ -54,7 +54,7 @@
   - name: change root_url setting
     lineinfile:
       dest: "{{ config_dir }}/{{config_file }}"
-      regexp: '^;root_url = %(protocol)s://%(domain)s:%(http_port)s/'
+      regexp: '^;root_url = %\(protocol\)s:\/\/%\(domain\)s:%\(http_port\)s\/'
       line: 'root_url = %(protocol)s://%(domain)s:%(http_port)s/grafana/'
       state: present
     notify: Restart Grafana service
