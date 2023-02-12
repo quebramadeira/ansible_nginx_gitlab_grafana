@@ -43,7 +43,10 @@
         gitlab_rails['internal_api_url'] = '{{ gitlab_url }}'
         puma['enable'] = false
         nginx['enable'] = false
-        web_server['external_users'] = ['{{ external_users }}']
+        web_server['external_users'] = ['{{ nginx_user }}']
+        gitlab_rails['trusted_proxies'] = ['127.0.0.1', <external-server-ip>]
+        gitlab_workhorse['listen_network'] = "unix"
+        gitlab_workhorse['listen_addr'] = "/var/opt/gitlab/gitlab-workhorse/sockets/socket"
         nginx['listen_port'] = 4000
       state: present
     notify: 
