@@ -48,3 +48,6 @@ nginx_upstreams:
 #   keepalive: 16 # optional
     servers:
       - "localhost:3000"
+  - name: gitlab-workhorse
+    servers:
+      - "unix://var/opt/gitlab/gitlab-workhorse/sockets/socket fail_timeout=0"
