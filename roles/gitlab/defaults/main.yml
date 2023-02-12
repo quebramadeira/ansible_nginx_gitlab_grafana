@@ -6,5 +6,5 @@ gitlab_dependencies:
   - postfix
  
 gitlab_version: 15.8.0
-gitlab_url: gitlab.example.com
+gitlab_url: /gitlab/
  
